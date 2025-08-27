@@ -3,17 +3,27 @@ import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 
 
-export interface Games {
+export interface Platform  {
   id: number;
-    name: string;
-    background_image: string;
+  name: string;
+  slug: string;
+};
+type ParentPlatforms = {
+  platform: Platform;
+}
+
+export interface Game {
+  id: number;
+  name: string;
+  background_image: string;
+  parent_platforms?: ParentPlatforms[];
 }
 interface FetchGamesResponse {
   count: number;
-  results: Games[];
+  results: Game[];
 }
 const useGames = () => {
-    const [games, setGames] = useState<Games[]>([]);
+    const [games, setGames] = useState<Game[]>([]);
     const [error, setError] = useState("");
 
     useEffect(() => {
