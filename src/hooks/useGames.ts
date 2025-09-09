@@ -16,7 +16,8 @@ export interface Game {
   name: string;
   background_image: string;
   parent_platforms?: ParentPlatforms[];
-  metacritic:number
+  metacritic:number;
+  rating_top: number;
 }
 const useGames = (gameQuery:GameQuery|null) => {
   return useData<Game>('/games',
